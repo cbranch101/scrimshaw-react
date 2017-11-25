@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import { withFragments, gql } from "../enhancers"
+import { withFragments, gql } from "../../lib"
 
 const SingleWidget = ({ widget }) => {
     return (

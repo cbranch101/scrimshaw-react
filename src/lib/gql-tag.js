@@ -1,8 +1,4 @@
-import withMutation from "./with-mutation"
-import withQuery from "./with-query"
-import withFragments from "./with-fragments"
-
-export const gql = (literals, ...substitutions) => {
+export default (literals, ...substitutions) => {
     let result = ""
 
     // run the loop only for the substitution count
@@ -15,5 +11,3 @@ export const gql = (literals, ...substitutions) => {
     result += literals[literals.length - 1]
     return result
 }
-
-export { withMutation, withQuery, withFragments }

@@ -1,7 +1,7 @@
 import { combineReducers } from "redux"
 
-import graphql from "./graphql"
+import { reducer as scrimshaw } from "../../lib"
 
 export default combineReducers({
-    graphql
+    scrimshaw
 })

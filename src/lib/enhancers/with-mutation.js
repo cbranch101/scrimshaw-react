@@ -4,7 +4,7 @@ import _ from "lodash"
 
 import State from "../components/state"
 import withConnect from "./with-connect"
-import { mutationCompleted } from "../actions/graphql"
+import { mutationCompleted } from "../actions"
 
 const Connect = withConnect(() => ({}), { mutationCompleted })
 

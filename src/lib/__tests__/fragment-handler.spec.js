@@ -1,4 +1,4 @@
-import createFragmentHandler from "../fragment-handler.js"
+import createFragmentHandler from "../create-fragment-handler.js"
 
 test("should replace any defined fragments in a query", () => {
     const fragmentHandler = createFragmentHandler()

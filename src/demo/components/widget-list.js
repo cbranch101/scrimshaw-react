@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import { withFragments, gql } from "../enhancers"
+import { withFragments, gql } from "../../lib"
 import WidgetRow from "./widget-row"
 import CreateWidget from "./create-widget.js"
 import Pagination from "./widget-list/pagination"

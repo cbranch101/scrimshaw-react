@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-import { withFragments, gql } from "../enhancers"
+import { withFragments, gql } from "../../lib"
 
 const WidgetRow = ({ widget, updateWidget }) => {
     return (
@@ -19,7 +19,9 @@ const WidgetRow = ({ widget, updateWidget }) => {
     )
 }
 
-const NumberHolder = styled.td`font-size: 22px;`
+const NumberHolder = styled.td`
+    font-size: 22px;
+`
 
 WidgetRow.propTypes = {
     updateWidget: PropTypes.func.isRequired,

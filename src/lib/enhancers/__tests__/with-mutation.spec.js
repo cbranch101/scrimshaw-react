@@ -6,8 +6,8 @@ import { Provider } from "react-redux"
 import withMutation from "../with-mutation"
 import withQuery from "../with-query"
 import RequestClientProvider from "../../providers/request-client-provider.js"
-import configureStore from "../../configure-store"
-import { getPromiseHandler } from "../../test-helpers"
+import configureStore from "../../../demo/configure-store"
+import { getPromiseHandler } from "../../../demo/test-helpers"
 
 const consoleMode = false
 

@@ -2,7 +2,7 @@ import yup from "yup"
 import React from "react"
 import PropTypes from "prop-types"
 
-import { gql } from "../enhancers"
+import { gql } from "../../lib"
 import Form from "./form"
 
 const defaultString = yup.string().default("")

@@ -1,8 +1,9 @@
-export const FETCHED = "QUERY_FETCHED"
-export const FETCHING = "QUERY_FETCHING"
-export const UPDATED = "QUERY_UPDATED"
-export const UPDATE_CLEARED = "QUERY_UPDATE_CLEARED"
-export const MUTATION_COMPLETED = "MUTATION_COMPLETED"
+const prefix = "@SCRIMSHAW_"
+export const FETCHED = `${prefix}QUERY_FETCHED`
+export const FETCHING = `${prefix}QUERY_FETCHING`
+export const UPDATED = `${prefix}QUERY_UPDATED`
+export const UPDATE_CLEARED = `${prefix}QUERY_UPDATE_CLEARED`
+export const MUTATION_COMPLETED = `${prefix}MUTATION_COMPLETED`
 
 export const queryFetched = (queryKey, data, variables) => ({
     type: FETCHED,

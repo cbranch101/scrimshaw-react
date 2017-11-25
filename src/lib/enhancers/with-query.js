@@ -6,7 +6,7 @@ import {
     fetch as fetchQuery,
     queryUpdated as updateQuery,
     queryUpdateCleared as clearQueryUpdate
-} from "../actions/graphql"
+} from "../actions"
 import withConnect from "./with-connect"
 import TrackedProps from "../components/tracked-props"
 
@@ -32,7 +32,7 @@ const unpackCurrentData = (currentData, updatedVariables) => {
 const withQuery = (query, options) => {
     const Connect = withConnect(
         state => ({
-            currentData: state.graphql.queries[options.queryKey]
+            currentData: state.scrimshaw.queries[options.queryKey]
         }),
         { fetchQuery, updateQuery, clearQueryUpdate }
     )

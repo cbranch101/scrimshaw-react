@@ -1,7 +1,7 @@
 import React from "react"
 import uuid from "uuid-v4"
 
-import { withQuery, withMutation, gql } from "../enhancers"
+import { withQuery, withMutation, gql } from "../../lib"
 import { RESULTS_PER_PAGE } from "../components/pagination/pagination"
 import App from "../components/app"
 import Location from "../components/location"

@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import BaseForm from "react-formal"
 
-import State from "./state"
+import State from "../../lib/components/state"
 const { Field, Message } = BaseForm
 
 const Form = ({ render, schema, onSubmit }) => {

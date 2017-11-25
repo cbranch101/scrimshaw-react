@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 
 import Switch from "./switch"
-import { withFragments, gql } from "../enhancers"
+import { withFragments, gql } from "../../lib"
 
 const pathMap = {
     "exact /": "Widgets",

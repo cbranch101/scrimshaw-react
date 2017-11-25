@@ -3,12 +3,12 @@ import ReactDOM from "react-dom"
 import { BrowserRouter as Router } from "react-router-dom"
 import { Provider } from "react-redux"
 
-import RequestClientProvider from "./providers/request-client-provider"
+import { Provider as RequestClientProvider, Client } from "../lib"
 import App from "./containers/app.js"
 import configureStore from "./configure-store"
 import "./index.css"
-import client from "./request-client"
 
+const client = new Client("http://localhost:3000/graphql")
 const store = configureStore()
 
 ReactDOM.render(

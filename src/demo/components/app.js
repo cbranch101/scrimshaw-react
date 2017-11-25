@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 import Header from "../components/header"
 import WidgetList from "./widget-list"
 import SingleWidget from "../containers/single-widget"
-import { withFragments, gql } from "../enhancers"
+import { withFragments, gql } from "../../lib"
 
 const App = ({ company, widgetList, createWidget, updateWidget }) => {
     const renderWidgetList = () => (

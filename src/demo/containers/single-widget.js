@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 
 import SingleWidget from "../components/single-widget"
-import { withQuery, gql } from "../enhancers"
+import { withQuery, gql } from "../../lib"
 
 const singleWidgetQuery = gql`
     query SingleWidgetQuery($id: ID) {

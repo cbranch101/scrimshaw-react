@@ -1,7 +1,7 @@
 import { combineReducers } from "redux"
 import _ from "lodash"
 
-import { FETCHED, FETCHING, UPDATED, UPDATE_CLEARED, MUTATION_COMPLETED } from "../actions/graphql"
+import { FETCHED, FETCHING, UPDATED, UPDATE_CLEARED, MUTATION_COMPLETED } from "./actions"
 
 const queries = (state = {}, action) => {
     const currentData = state[action.queryKey]

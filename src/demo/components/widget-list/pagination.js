@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 import BasePagination from "../pagination"
 import Location from "../location"
-import { withFragments, gql } from "../../enhancers"
+import { withFragments, gql } from "../../../lib"
 const enhance = withFragments({
     widgetList: gql`
         fragment on WidgetConnection {
