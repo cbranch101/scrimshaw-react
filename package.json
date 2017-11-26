@@ -19,13 +19,13 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/udiliaInc/create-react-library.git"
+        "url": "git+https://github.com/cbranch101/scrimshaw-react.git"
     },
-    "author": "Dimitri Mikadze <dimitri@udilia.com>",
+    "author": "Clay Branch <clay.branch@gmail.com>",
     "bugs": {
-        "url": "https://github.com/udiliaInc/create-react-library/issues"
+        "url": "https://github.com/cbranch101/scrimshaw-react/issues"
     },
-    "homepage": "https://github.com/udiliaInc/create-react-library#readme",
+    "homepage": "https://github.com/cbranch101/scrimshaw-react#readme",
     "license": "MIT",
     "dependencies": {
         "deep-equal": "^1.0.1",
