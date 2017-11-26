@@ -1,16 +1,15 @@
 {
     "name": "scrimshaw-react",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "description":
-        "React NPM library starter kit based on Facebook's create react app",
+        "A render prop focused client for integrating GraphQL with React",
     "main": "build/index.js",
     "proxy": "http://localhost:4000/",
     "scripts": {
         "build": "node scripts/build.js",
         "test": "node scripts/test.js --env=jsdom",
         "precommit": "CI=true npm test && npm run lint",
-        "analyze":
-            "npm run build && source-map-explorer build/static/js/main.*",
+        "analyze": "npm run build && source-map-explorer build/index.js",
         "start": "npm run get-schema && node scripts/start.js",
         "lint": "./node_modules/.bin/eslint src/",
         "get-schema":
