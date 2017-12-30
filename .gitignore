@@ -5,6 +5,7 @@
 
 # testing
 /coverage
+_book
 
 # misc
 .DS_Store
