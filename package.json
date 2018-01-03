@@ -1,6 +1,6 @@
 {
   "name": "scrimshaw-react",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description":
     "A render prop focused client for integrating GraphQL with React",
   "main": "build/index.js",
