@@ -5,15 +5,6 @@ import gql from "./gql-tag"
 import Provider from "./providers/request-client-provider"
 import Client from "./request-client"
 import reducer from "./reducer"
-import createFragmentHandler from "./create-fragment-handler"
+import fragmentHandler from "./fragment-handler"
 
-export {
-    withFragments,
-    withQuery,
-    withMutation,
-    Client,
-    Provider,
-    gql,
-    reducer,
-    createFragmentHandler
-}
+export { withFragments, withQuery, withMutation, Client, Provider, gql, reducer, fragmentHandler }
