@@ -1,19 +1,12 @@
-# <a href='https://cbranch101.github.io/scrimshaw-react/'><img src='https://image.ibb.co/gXwwpw/image_360.png' height='200' alt='Scrimshaw Logo' aria-label='cbranch101.github.io/scrimshaw-react' /></a>
+# Getting Started
 
-Scrimshaw is a series of render prop components for querying GraphQL Data in react.
-
-[![npm version](https://img.shields.io/npm/v/scrimshaw-react.svg?style=flat-square)](https://www.npmjs.com/package/scrimshaw-react)
-[![npm downloads](https://img.shields.io/npm/dm/scrimshaw-react.svg?style=flat-square)](https://www.npmjs.com/package/scrimshaw-react)
-
-## Installation
-
-### Install the dependencies
+## Install the dependencies
 ```
 npm install --save scrimshaw-react
 yarn add scrimshaw-react
 ```
 
-### Set up Client
+## Set up Client
 ```js
 import React from "react"
 import ReactDOM from "react-dom"
@@ -42,7 +35,7 @@ ReactDOM.render(
 )
 ```
 
-### Add the reducer
+## Add the reducer
 ```js
 import { combineReducers } from "redux"
 

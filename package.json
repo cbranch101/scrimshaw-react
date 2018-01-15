@@ -2,7 +2,7 @@
   "name": "scrimshaw-react",
   "version": "0.1.4",
   "description":
-    "A render prop focused client for integrating GraphQL with React",
+    "A framework that streamlines the process of getting GraphQL data into React components",
   "main": "build/index.js",
   "proxy": "http://localhost:4000/",
   "scripts": {
