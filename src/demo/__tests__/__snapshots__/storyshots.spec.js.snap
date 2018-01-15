@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots WidgetList basic configuration 1`] = `
+.c0 {
+  font-size: 22px;
+}
+
+<div>
+  <div>
+    <div
+      className="pagination-container columns"
+    >
+      <h2
+        className="aural"
+      >
+        Paginate
+      </h2>
+      <div
+        className="pagination-wrapper is-three-quarters column"
+      >
+        <nav
+          aria-label="Page navigation"
+          className="pagination"
+        >
+          <ul
+            className="pagination-list"
+          />
+        </nav>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            Name
+          </th>
+          <th>
+            Cost
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <a
+              href="/widgets/1"
+              onClick={[Function]}
+            >
+              One
+            </a>
+          </td>
+          <td
+            className="c0"
+          >
+            100
+          </td>
+          <button
+            onClick={[Function]}
+          >
+            Add 5
+          </button>
+        </tr>
+        <tr>
+          <td>
+            <a
+              href="/widgets/2"
+              onClick={[Function]}
+            >
+              Two
+            </a>
+          </td>
+          <td
+            className="c0"
+          >
+            100
+          </td>
+          <button
+            onClick={[Function]}
+          >
+            Add 5
+          </button>
+        </tr>
+      </tbody>
+    </table>
+    <form
+      noValidate={true}
+      onSubmit={[Function]}
+    >
+      <div>
+        <div>
+          <label>
+            Name
+          </label>
+          <input
+            className=""
+            name="name"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="First name"
+            type="text"
+            value=""
+          />
+          <label>
+            Cost
+          </label>
+          <input
+            className=""
+            name="cost"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Cost"
+            type="number"
+            value=""
+          />
+        </div>
+        <button
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+`;

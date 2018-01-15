@@ -1,0 +1,381 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Colocating Fragments · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="linting-graphql.html" />
+    
+    
+    <link rel="prev" href="mutating-data.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="getting-started.html">
+            
+                <a href="getting-started.html">
+            
+                    
+                    Getting Started
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="querying-data.html">
+            
+                <a href="querying-data.html">
+            
+                    
+                    Querying Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="mutating-data.html">
+            
+                <a href="mutating-data.html">
+            
+                    
+                    Mutating Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5" data-path="colocating-fragments.html">
+            
+                <a href="colocating-fragments.html">
+            
+                    
+                    Colocating Fragments
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="linting-graphql.html">
+            
+                <a href="linting-graphql.html">
+            
+                    
+                    Linting GraphQL
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Colocating Fragments</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="colocating-fragments">Colocating Fragments</h1>
+<p>Keeping the fragments describing the specific data needs of a component in the same file as the component makes it much easier to ensure that component&apos;s data requirements stay up to date.  For example, when paired with <code>eslint-plugin-graphql</code> using colocated fragments ensures that if you have changes to your GraphQL schema, every component that needs to have its props updated will be flagged by the linter.</p>
+<h2 id="example">Example</h2>
+<p>In this example, we&apos;ll have three different components, each with different data requirements.
+<code>Post</code> renders the <code>text</code> and <code>likes</code> fields for a post, <code>PostList</code> renders the list of post along with the name of the user the posts are for, and <code>User</code> ties everything together.  </p>
+<h3 id="post"><code>Post</code></h3>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { withFragments } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;scrimshaw-react&quot;</span>
+
+<span class="hljs-keyword">const</span> Post = ({ post }) =&gt; {
+    <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{post.text}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{post.likes}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
+    )
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> withFragments({
+    <span class="hljs-comment">// this tag is only needed if you want to do linting</span>
+    post: gql<span class="hljs-string">`
+      fragment on Post {
+        text
+        likes
+      }
+    `</span>
+})(Post)
+</code></pre>
+<p>While <code>withFragments</code> looks like an HOC here, it&apos;s doesn&apos;t require jumping through a lot of the hoops that HOCs require, as all its doing is assigning a static <code>fragments</code> property to the component.  The only thing worth noting is that, by convention, the fragments in the object provided to with fragments are indexed by the props that they correspond with</p>
+<h3 id="postlist"><code>PostList</code></h3>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>
+<span class="hljs-keyword">import</span> Post <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./post&quot;</span>
+<span class="hljs-keyword">import</span> { withFragments } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;scrimshaw-react&quot;</span>
+
+<span class="hljs-keyword">const</span> PostList = ({ user }) =&gt; {
+    <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Posts for {user.name}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>{user.posts.map(post =&gt; <span class="hljs-tag">&lt;<span class="hljs-name">Post</span> <span class="hljs-attr">post</span>=<span class="hljs-string">{post}</span> /&gt;</span>)}<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    )
+}
+
+export default withFragments({
+    user: gql`
+      fragment on User {
+        name
+        posts {
+          ...${Post.fragments.post}
+        }
+      }
+  `
+})(PostList)
+</span></code></pre>
+<p>Going one level up, we follow the same structure, while adding the fragments from further down the tree into this fragment. To make it as easy as possible to keep fragments up to date, make sure that only fields actually used in this component are specified at this level</p>
+<h3 id="user"><code>User</code></h3>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>
+
+<span class="hljs-keyword">import</span> { withQuery, gql } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;scrimshaw-react&quot;</span>
+<span class="hljs-keyword">import</span> PostList <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./post-list&quot;</span>
+
+<span class="hljs-keyword">const</span> query = gql<span class="hljs-string">`
+    query User {
+        ...<span class="hljs-subst">${PostList.fragments.user}</span>
+    }
+`</span>
+
+<span class="hljs-keyword">const</span> Query = withQuery(query, {
+    queryKey: <span class="hljs-string">&quot;user&quot;</span>,
+    loadingComponent: <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Loading<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+})
+
+<span class="hljs-keyword">const</span> User = () =&gt; {
+    <span class="hljs-keyword">return</span> (
+        &lt;Query
+            render={({ user }) =&gt; {
+                return (
+                    &lt;div&gt;
+                        &lt;PostList user={user} /&gt;
+                    &lt;/div&gt;
+                )
+            }}
+        /&gt;
+    )
+}
+export default User
+</code></pre>
+<p>Finally, we actually provide the fragments to a query and everything works. Bundling fragments this way makes it much easier to ensure that components stay in sync with a schema changes, and that new data requirements get added correctly to fragments.  For example, let&apos;s say we wanted to add a <code>title</code> field to our <code>Post</code> component.  Instead of needing to remember to update a field in some other file, we simple add <code>title</code> to the fragment in <code>Post</code> and the changes cascade all the way up the tree.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="mutating-data.html" class="navigation navigation-prev " aria-label="Previous page: Mutating Data">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="linting-graphql.html" class="navigation navigation-next " aria-label="Next page: Linting GraphQL">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Colocating Fragments","level":"1.5","depth":1,"next":{"title":"Linting GraphQL","level":"1.6","depth":1,"path":"docs/linting-graphql.md","ref":"docs/linting-graphql.md","articles":[]},"previous":{"title":"Mutating Data","level":"1.4","depth":1,"path":"docs/mutating-data.md","ref":"docs/mutating-data.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"docs/colocating-fragments.md","mtime":"2018-01-03T17:10:56.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-15T19:38:48.562Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

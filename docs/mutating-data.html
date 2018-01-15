@@ -1,0 +1,437 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Mutating Data · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="colocating-fragments.html" />
+    
+    
+    <link rel="prev" href="querying-data.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="getting-started.html">
+            
+                <a href="getting-started.html">
+            
+                    
+                    Getting Started
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="querying-data.html">
+            
+                <a href="querying-data.html">
+            
+                    
+                    Querying Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4" data-path="mutating-data.html">
+            
+                <a href="mutating-data.html">
+            
+                    
+                    Mutating Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="colocating-fragments.html">
+            
+                <a href="colocating-fragments.html">
+            
+                    
+                    Colocating Fragments
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="linting-graphql.html">
+            
+                <a href="linting-graphql.html">
+            
+                    
+                    Linting GraphQL
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Mutating Data</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="mutating-data">Mutating Data</h1>
+<p>While a little bit more involved than queries, mutations in Scrimshaw are still very simple</p>
+<h2 id="basic-mutation-example">Basic Mutation example</h2>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>
+
+<span class="hljs-keyword">import</span> { withMutation, gql } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;scrimshaw-react&quot;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> mutation = gql<span class="hljs-string">`
+    mutation($text: String) {
+        createPost(text: $text) {
+            text
+            id
+        }
+    }
+`</span>
+
+<span class="hljs-keyword">const</span> CreateMutation = withMutation(mutation)
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreatePost</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    state = {
+        text: <span class="hljs-string">&quot;&quot;</span>
+    }
+    render = () =&gt; {
+        <span class="hljs-keyword">return</span> (
+            &lt;CreateMutation
+                // most of the time, the only argument you&apos;ll need in render is the actual mutation promise
+                render={({ mutate }) =&gt; {
+                    return (
+                        &lt;div&gt;
+                            &lt;input
+                                type=&quot;text&quot;
+                                value={this.state.text}
+                                onChange={e =&gt; {
+                                    this.setState({
+                                        text: e.target.value
+                                    })
+                                }}
+                            /&gt;
+                            &lt;button onClick={() =&gt; mutate({ text: this.state.text })} /&gt;
+                        &lt;/div&gt;
+                    )
+                }}
+            /&gt;
+        )
+    }
+}
+</code></pre>
+<h2 id="withmutation-options"><code>withMutation</code> options</h2>
+<ul>
+<li><code>reducers</code>(optional) <code>{[queryKey]: (currentData, mutationResult) =&gt; updatedData}</code> An object where the keys are <code>queryKey</code>s of a query you want to update once this mutation completes, and the values are standard redux reducers that receive the data currently in the store and the data returned from the mutation, and returns the updated data for the store.  </li>
+</ul>
+<h2 id="arguments-provided-to-render">Arguments provided to render</h2>
+<ul>
+<li><code>mutate</code> A promise that receives the input specified in the mutation and then resolves with whatever the mutation returns</li>
+<li><code>mutating</code> If this field is true, then there is at least one instance of this mutation currently inflight</li>
+<li><code>inputs</code> An array of the inputs provided to all currently inflight mutations, in the order that they went out</li>
+</ul>
+<h2 id="optimistic-mutation-example">Optimistic Mutation example</h2>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>
+
+<span class="hljs-keyword">import</span> { withQuery, withMutation, gql } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;scrimshaw-react&quot;</span>
+<span class="hljs-keyword">import</span> CreatePost <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../components/create-post&quot;</span>
+<span class="hljs-keyword">import</span> PostList <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../components/post-list&quot;</span>
+
+<span class="hljs-comment">// define the query that will be mutated</span>
+<span class="hljs-keyword">const</span> postQuery = gql<span class="hljs-string">`
+    query Posts() {
+      posts {
+        text
+        id
+      }
+    }
+`</span>
+
+<span class="hljs-comment">// define the mutation</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> mutation = gql<span class="hljs-string">`
+    mutation($text: String) {
+        createPost(text: $text) {
+            text
+            id
+        }
+    }
+`</span>
+
+<span class="hljs-comment">// create the Query component</span>
+<span class="hljs-keyword">const</span> Query = withQuery(postQuery, {
+    queryKey: <span class="hljs-string">&quot;posts&quot;</span>,
+    loadingComponent: <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Posts Loading<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+})
+
+<span class="hljs-comment">// create the mutation component</span>
+<span class="hljs-keyword">const</span> CreateMutation = withMutation(mutation, {
+    <span class="hljs-comment">// update the data stored for a given query once the mutation completes</span>
+    reducers: {
+        <span class="hljs-comment">// make sure this corresponds with the queryKey specified in the</span>
+        <span class="hljs-comment">// query you want to update</span>
+        posts: (posts, newPost) =&gt; {
+            <span class="hljs-comment">// be sure to avoid mutating any objects in these reducers</span>
+            <span class="hljs-comment">// as they are run within redux</span>
+            <span class="hljs-keyword">return</span> [...posts, newPost]
+        }
+    }
+})
+
+<span class="hljs-keyword">const</span> Posts = () =&gt; {
+    <span class="hljs-keyword">return</span> (
+        &lt;Query
+            render={({ posts }) =&gt; {
+                // Because the mutation needs to optimistically update posts
+                // be sure to have the mutation inside of the query.
+                // Otherwise, the order of the wrapping doesn&apos;t matter
+                return (
+                    &lt;CreateMutation
+                        render={({ mutate: createPost, mutating, inputs }) =&gt; {
+                            // if we&apos;re mutating, use the currently inflight inputs
+                            // to optimistically add new posts to the current post list
+                            // once the mutation completes, posts will update, and we no longer
+                            // need to deal with optimistic updates
+                            const optimisticPosts = mutating
+                                ? [
+                                    ...posts,
+                                    // iterate over the inflight inputs
+                                    // and generate a shape that matches a valid post
+                                    ...inputs.map((input, index) =&gt; ({
+                                        text: input.text,
+                                        id: `creating-${index}`
+                                    }))
+                                ]
+                                : posts
+                            return (
+                                &lt;div&gt;
+                                    &lt;CreatePost onCreate={createPost} /&gt;
+                                    &lt;PostList posts={optimisticPosts} /&gt;
+                                &lt;/div&gt;
+                            )
+                        }}
+                    /&gt;
+                )
+            }}
+        /&gt;
+    )
+}
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="querying-data.html" class="navigation navigation-prev " aria-label="Previous page: Querying Data">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="colocating-fragments.html" class="navigation navigation-next " aria-label="Next page: Colocating Fragments">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Mutating Data","level":"1.4","depth":1,"next":{"title":"Colocating Fragments","level":"1.5","depth":1,"path":"docs/colocating-fragments.md","ref":"docs/colocating-fragments.md","articles":[]},"previous":{"title":"Querying Data","level":"1.3","depth":1,"path":"docs/querying-data.md","ref":"docs/querying-data.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"docs/mutating-data.md","mtime":"2018-01-03T17:10:56.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-15T19:38:48.562Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

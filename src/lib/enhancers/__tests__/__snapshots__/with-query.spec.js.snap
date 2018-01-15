@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`after loaded props 1`] = `
+Object {
+  "bar": "boo",
+  "clearUpdate": [Function],
+  "foo": "test",
+  "loading": false,
+  "refetch": [Function],
+  "update": [Function],
+}
+`;
+
+exports[`first load 1`] = `
+Object {
+  "bar": "boo",
+  "clearUpdate": [Function],
+  "foo": "test",
+  "loading": false,
+  "refetch": [Function],
+  "update": [Function],
+}
+`;
+
+exports[`optmistically updated props 1`] = `
+Object {
+  "bar": "boo",
+  "clearUpdate": [Function],
+  "foo": "test",
+  "loading": false,
+  "one": "optimisticValue",
+  "refetch": [Function],
+  "update": [Function],
+}
+`;
+
+exports[`refetched after update 1`] = `
+Object {
+  "bar": "refetched",
+  "clearUpdate": [Function],
+  "foo": "refetched",
+  "loading": false,
+  "refetch": [Function],
+  "update": [Function],
+}
+`;
+
+exports[`refetched props 1`] = `
+Object {
+  "clearUpdate": [Function],
+  "loading": false,
+  "refetch": [Function],
+  "refetched": true,
+  "update": [Function],
+}
+`;
+
+exports[`second load 1`] = `
+Object {
+  "clearUpdate": [Function],
+  "loading": false,
+  "refetch": [Function],
+  "update": [Function],
+  "updatedData": true,
+}
+`;

@@ -1,0 +1,207 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Both running 1`] = `
+Object {
+  "inputs": Array [
+    Object {
+      "clientMutationId": "one",
+      "count": 10,
+      "id": 1,
+    },
+    Object {
+      "clientMutationId": "two",
+      "count": 15,
+      "id": 2,
+    },
+  ],
+  "mutate": [Function],
+  "mutating": true,
+  "propsFromQuery": Object {
+    "count": 5,
+    "id": 1,
+  },
+}
+`;
+
+exports[`Both running 2`] = `
+Object {
+  "inputs": Array [
+    Object {
+      "clientMutationId": "one",
+      "count": 10,
+      "id": 1,
+    },
+    Object {
+      "clientMutationId": "two",
+      "count": 15,
+      "id": 1,
+    },
+  ],
+  "mutate": [Function],
+  "mutating": true,
+  "propsFromQuery": Object {
+    "count": 5,
+    "id": 1,
+  },
+}
+`;
+
+exports[`after mutate 1`] = `
+Object {
+  "inputs": Array [],
+  "mutate": [Function],
+  "mutating": false,
+  "propsFromQuery": Object {
+    "count": 10,
+    "id": 1,
+  },
+}
+`;
+
+exports[`all complete 1`] = `
+Object {
+  "inputs": Array [],
+  "mutate": [Function],
+  "mutating": false,
+  "propsFromQuery": Object {
+    "count": 15,
+    "id": 1,
+  },
+}
+`;
+
+exports[`all complete 2`] = `
+Object {
+  "inputs": Array [],
+  "mutate": [Function],
+  "mutating": false,
+  "propsFromQuery": Object {
+    "count": 15,
+    "id": 1,
+  },
+}
+`;
+
+exports[`before mutate 1`] = `
+Object {
+  "inputs": Array [],
+  "mutate": [Function],
+  "mutating": false,
+  "propsFromQuery": Object {
+    "count": undefined,
+    "id": undefined,
+  },
+}
+`;
+
+exports[`before mutations 1`] = `
+Object {
+  "inputs": Array [],
+  "mutate": [Function],
+  "mutating": false,
+  "propsFromQuery": Object {
+    "count": undefined,
+    "id": undefined,
+  },
+}
+`;
+
+exports[`before mutations 2`] = `
+Object {
+  "inputs": Array [],
+  "mutate": [Function],
+  "mutating": false,
+  "propsFromQuery": Object {
+    "count": undefined,
+    "id": undefined,
+  },
+}
+`;
+
+exports[`during mutate 1`] = `
+Object {
+  "inputs": Array [
+    Object {
+      "count": 10,
+    },
+  ],
+  "mutate": [Function],
+  "mutating": true,
+  "propsFromQuery": Object {
+    "count": 5,
+    "id": 1,
+  },
+}
+`;
+
+exports[`first complete, second running 1`] = `
+Object {
+  "inputs": Array [
+    Object {
+      "clientMutationId": "two",
+      "count": 15,
+      "id": 2,
+    },
+  ],
+  "mutate": [Function],
+  "mutating": true,
+  "propsFromQuery": Object {
+    "count": 10,
+    "id": 1,
+  },
+}
+`;
+
+exports[`first complete, second running 2`] = `
+Object {
+  "inputs": Array [
+    Object {
+      "clientMutationId": "two",
+      "count": 15,
+      "id": 1,
+    },
+  ],
+  "mutate": [Function],
+  "mutating": true,
+  "propsFromQuery": Object {
+    "count": 5,
+    "id": 1,
+  },
+}
+`;
+
+exports[`first running 1`] = `
+Object {
+  "inputs": Array [
+    Object {
+      "clientMutationId": "one",
+      "count": 10,
+      "id": 1,
+    },
+  ],
+  "mutate": [Function],
+  "mutating": true,
+  "propsFromQuery": Object {
+    "count": 5,
+    "id": 1,
+  },
+}
+`;
+
+exports[`first running 2`] = `
+Object {
+  "inputs": Array [
+    Object {
+      "clientMutationId": "one",
+      "count": 10,
+      "id": 1,
+    },
+  ],
+  "mutate": [Function],
+  "mutating": true,
+  "propsFromQuery": Object {
+    "count": 5,
+    "id": 1,
+  },
+}
+`;

@@ -1,0 +1,328 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Linting GraphQL · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="colocating-fragments.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="getting-started.html">
+            
+                <a href="getting-started.html">
+            
+                    
+                    Getting Started
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="querying-data.html">
+            
+                <a href="querying-data.html">
+            
+                    
+                    Querying Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="mutating-data.html">
+            
+                <a href="mutating-data.html">
+            
+                    
+                    Mutating Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="colocating-fragments.html">
+            
+                <a href="colocating-fragments.html">
+            
+                    
+                    Colocating Fragments
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6" data-path="linting-graphql.html">
+            
+                <a href="linting-graphql.html">
+            
+                    
+                    Linting GraphQL
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Linting GraphQL</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="linting-graphql">Linting GraphQL</h1>
+<h2 id="installation">Installation</h2>
+<h3 id="add-eslint-plugin-graphql">Add <a href="https://github.com/apollographql/eslint-plugin-graphql" target="_blank"><code>eslint-plugin-graphql</code></a></h3>
+<pre><code>npm install eslint-plugin-graphql --save-dev
+yarn add --dev eslint-plugin-graphql
+</code></pre><h3 id="add-save-graphql-schema">Add <a href="https://www.npmjs.com/package/save-graphql-schema" target="_blank"><code>save-graphql-schema</code></a></h3>
+<p>This downloads the most up to date version of the introspection introspection query for your schema</p>
+<pre><code>npm install save-graphql-schema --save-dev
+yarn add --dev save-graphql-schema
+</code></pre><h3 id="add-new-scripts">Add new scripts</h3>
+<p>Add the following to <code>scripts</code> in your <code>package.json</code> to actually download the schema and run it every
+time your app starts</p>
+<pre><code>&quot;get-schema&quot;: &quot;save-graphql-schema [url to your graphql server] --json&quot;,
+&quot;start&quot;: &quot;npm run get-schema &amp;&amp; node scripts/start.js&quot;,
+</code></pre><h3 id="configure-eslint-config">Configure <code>eslint</code> config</h3>
+<p>Add the following to your eslint config</p>
+<pre><code>{
+  &quot;graphql/template-strings&quot;: [
+      &quot;error&quot;,
+      {
+          env: &quot;lokka&quot;,
+          tagName: &quot;gql&quot;,
+          schemaJson: require(&quot;./schema.json&quot;)
+      }
+  ],
+  plugins: [&quot;graphql&quot;]
+}
+</code></pre><h3 id="wrap-graphql-in-gql-tag">Wrap GraphQL in <code>gql</code> tag</h3>
+<p>Finally, wrap all Queries, Mutations, and Fragments in the provided <code>gql</code> tag and everything should be linted against your schema</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { gql } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;scrimshaw-react&apos;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> withFragments({
+    post: gql<span class="hljs-string">`
+      fragment on Post {
+        text
+        likes
+      }
+    `</span>
+})(Post)
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="colocating-fragments.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Colocating Fragments">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Linting GraphQL","level":"1.6","depth":1,"previous":{"title":"Colocating Fragments","level":"1.5","depth":1,"path":"docs/colocating-fragments.md","ref":"docs/colocating-fragments.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"docs/linting-graphql.md","mtime":"2018-01-03T17:10:56.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-15T19:38:48.562Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
