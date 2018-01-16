@@ -1,6 +1,6 @@
 {
   "name": "scrimshaw-react",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description":
     "A framework that streamlines the process of getting GraphQL data into React components",
   "main": "build/index.js",
